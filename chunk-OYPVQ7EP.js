@@ -1,0 +1,1 @@
+import{a as o}from"./chunk-MI4MFL7M.js";import{Q as e,V as i,k as r}from"./chunk-EKEZSOAM.js";var n=class t{constructor(a){this._httpClient=a}userName=new r("");static \u0275fac=function(c){return new(c||t)(i(o))};static \u0275prov=e({token:t,factory:t.\u0275fac,providedIn:"root"})};export{n as a};

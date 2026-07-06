@@ -1,0 +1,1 @@
+import{ab as m}from"./chunk-EKEZSOAM.js";var a=class i{transform(e,r,n){return e?e.filter(f=>{let t=!0;return r&&r!=="all"&&(t=t&&f.category===r),n&&(t=t&&f.rating.rate>=n),t}):[]}static \u0275fac=function(r){return new(r||i)};static \u0275pipe=m({name:"filter",type:i,pure:!0})};export{a as FilterPipe};

@@ -1,0 +1,1 @@
+import{ab as i}from"./chunk-EKEZSOAM.js";var o=class e{transform(t,r){return t.filter(a=>a.title.toLowerCase().includes(r.toLowerCase()))}static \u0275fac=function(r){return new(r||e)};static \u0275pipe=i({name:"searchName",type:e,pure:!0})};export{o as SearchNamePipe};
