@@ -1,0 +1,52 @@
+<footer class="bg-surface-50 mt-auto text-500 surface-50 border-round-xl border-surface-50 shadow-1 p-6">
+  <div class="grid">
+    <!-- 🛍️ Shop -->
+    <div class="col-12 md:col-3">
+      <h4 class="font-semibold text-800 mb-3">Shop</h4>
+      <ul class="list-none p-0 m-0 flex flex-column gap-2 text-sm">
+        <li><a [routerLink]="'products'" class="no-underline text-500 hover:text-cyan-500 cursor-pointer ">All Products</a></li>
+        <li><a [routerLink]="'category'" class="no-underline text-500 hover:text-cyan-500 cursor-pointer  ">Categories</a></li>
+        <li><a [routerLink]="'cart'" class="no-underline text-500 hover:text-cyan-500 cursor-pointer ">Cart</a></li>
+        <li><a routerLink="/wishlist" class="no-underline text-500 hover:text-cyan-500 cursor-pointer ">Wishlist</a></li>
+      </ul>
+    </div>
+
+    <!-- 💬 Support -->
+    <div class="col-12 md:col-3">
+      <h4 class="font-semibold text-800 mb-3">Support</h4>
+      <ul class="list-none p-0 m-0 flex flex-column gap-2 text-sm">
+        <li><a routerLink="/help" class="no-underline text-500 hover:text-cyan-500 cursor-pointer ">Help Center</a></li>
+        <li><a routerLink="/returns" class="no-underline text-500 hover:text-cyan-500 cursor-pointer ">Returns</a></li>
+        <li><a routerLink="/shipping" class="no-underline text-500 hover:text-cyan-500 cursor-pointer ">Shipping Info</a></li>
+        <li><a [routerLink]="'faq'" class="no-underline text-500 hover:text-cyan-500 cursor-pointer ">FAQ</a></li>
+      </ul>
+    </div>
+
+    <!-- 🏢 Company -->
+    <div class="col-12 md:col-3">
+      <h4 class="font-semibold text-800 mb-3">Company</h4>
+      <ul class="list-none p-0 m-0 flex flex-column gap-2 text-sm">
+        <li><a routerLink="/about" class="no-underline text-500 hover:text-cyan-500 cursor-pointer ">About Us</a></li>
+        <li><a routerLink="/careers" class="no-underline text-500 hover:text-cyan-500 cursor-pointer ">Careers</a></li>
+        <li><a routerLink="/privacy" class="no-underline text-500 hover:text-cyan-500 cursor-pointer ">Privacy Policy</a></li>
+        <li><a routerLink="/terms" class="no-underline text-500 hover:text-cyan-500 cursor-pointer ">Terms & Conditions</a></li>
+      </ul>
+    </div>
+
+    <!-- 📱 Contact -->
+    <div class="col-12 md:col-3">
+      <h4 class="font-semibold text-800 mb-3">Contact</h4>
+      <ul class="list-none p-0 m-0 flex flex-column gap-2 text-sm">
+        <li><i class="pi pi-envelope mr-2 text-cyan-500 "></i> fakeStore.com</li>
+        <li><i class="pi pi-phone mr-2 text-cyan-500 "></i> +1 (555) 123-4567</li>
+        <li><i class="pi pi-map-marker mr-2 text-cyan-500 "></i> Milo, Earth</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="w-6"/>
+
+  <div class="text-center border-surface-200 mt-5 pt-3 text-sm">
+    © {{ currentYear }} MyStore. All rights reserved.
+  </div>
+</footer>

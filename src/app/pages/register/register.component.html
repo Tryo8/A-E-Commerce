@@ -1,0 +1,158 @@
+<section>
+    <div class="container m-3 justify-content-center mx-auto">
+        <div class="grid justify-content-center mt-5" >
+            <div class="col shadow-2 border-round-xl surface-100 px-3" style="max-width: 380px;">
+                <h4 class="text-700 text-start">Register Form</h4>
+                <form [formGroup]="registrationForm" (ngSubmit)="onFormSubmit()">
+                    <!-- user name -->
+                    <div class="feild mb-3">
+                        <p-floatlabel variant="on">
+                            <p-iconfield>
+                                @if(name.errors  && name.dirty){
+                                    <p-inputicon style="color: #f32a2a" class="pi pi-user" />
+                                } @else {
+                                    <p-inputicon class="pi pi-user" />
+                                }
+                                <input [pAutoFocus]="true" formControlName="name" class="w-full border-round-xl" pInputText id="on_label" autocomplete="off" required minLength="3"/>
+                            </p-iconfield>
+                            <label for="on_label">Username</label>
+                        </p-floatlabel>
+                        <div class="valid-feedback pt-1">
+                            @if(name.touched && name.dirty){
+                                @if(name.getError('required')){ 
+                                <p-message class="text-center" severity="error" variant="simple" size="small">username is required</p-message>
+                                }
+                                @if(name.getError('minlength')){
+                                    <p-message class="text-center" severity="error" variant="simple" size="small">must be at least 3</p-message>
+                                }
+                                @if(name.getError('maxlength')){
+                                    <p-message class="text-center" severity="error" variant="simple" size="small">can't be above 33 characters</p-message>
+                                }
+                                @if(name.getError('forbiddenName')){
+                                    <p-message class="text-center" severity="error" variant="simple" size="small">Invalid username</p-message>
+                                }
+                                @if(name.getError('pattern')){
+                                    <p-message class="text-center" severity="error" variant="simple" size="small">Invalid username</p-message>
+                                }
+                            }
+                        </div>
+
+                    
+                        
+                    </div>
+                    <!-- email -->
+                    <div class="feild mb-3">
+                        <p-floatlabel variant="on">
+                            <p-iconfield>
+                                @if(email.errors  && email.dirty){
+                                    <p-inputicon style="color: #f32a2a" class="pi pi-envelope" />
+                                } @else {
+                                    <p-inputicon class="pi pi-envelope" />
+                                }
+                             
+                                <input formControlName="email"  class="w-full border-round-xl" pInputText id="on_label" autocomplete="off" required/>
+                            </p-iconfield>
+                            <label for="on_label">Email</label>
+                        </p-floatlabel>
+                        <div class="valid-feedback pt-1">
+                            @if(email.touched && email.dirty){
+                                @if(email.getError('required')){ 
+                                    <p-message class="text-center" severity="error" variant="simple" size="small">email is required</p-message>
+                                }
+                                @if(email.getError('email')){
+                                    <p-message class="text-center" severity="error" variant="simple" size="small">must be a valid email address</p-message>
+                                }
+                            }
+                        </div>
+                        
+                    </div>
+                    <!-- password -->
+                    <div class="feild mb-3">
+                        <p-floatlabel variant="on">
+                            <p-iconfield [class.show]="showPassword">
+                                @if(password.errors  && password.dirty){
+                                    <p-inputicon style="color: #f32a2a" class="pi pi-lock" />
+                                } @else {
+                                    <p-inputicon class="pi pi-lock" />
+                                }
+                                <input toggleMask="true" [type]="showPassword ? 'text' : 'password'" formControlName="password"  class="w-full border-round-xl" pInputText id="on_label" autocomplete="off" required/>
+                                @if(password.errors  && password.dirty){
+                                    <p-inputicon class="cursor-pointer" style="color: #f32a2a"  [ngClass]="showPassword ? 'pi pi-eye' : 'pi pi-eye-slash'" (click)="togglePassword()"/>
+                                } @else {
+                                    <p-inputicon class="cursor-pointer" [ngClass]="showPassword ? 'pi pi-eye' : 'pi pi-eye-slash'" (click)="togglePassword()"/>
+                                }
+                              
+                            </p-iconfield>
+                            <label for="on_label">Password</label>
+                        </p-floatlabel>
+                        <div class="valid-feedback pt-1">
+                            @if(password.touched && password.dirty){
+                                @if(password.getError('required')){ 
+                                    <p-message class="text-center" severity="error" variant="simple" size="small">password is required</p-message>
+                                }
+                                @if(password.getError('minlength')){ 
+                                    <p-message class="text-center" severity="error" variant="simple" size="small">Must be at least 8 characters</p-message>
+                                }
+                            }
+                        </div>
+                       
+                    </div>
+                    <!-- re-password -->
+                    <div class="feild mb-3">
+                        <p-floatlabel variant="on">
+                            <p-iconfield>
+                                @if(rePassword.errors  && rePassword.dirty){
+                                    <p-inputicon style="color: #f32a2a" class="pi pi-check-square" />
+                                } @else {
+                                    <p-inputicon class="pi pi-check-square" />
+                                }
+                                <input type="password" formControlName="rePassword" class="w-full border-round-xl" pInputText id="on_label" autocomplete="off" required/>
+                            </p-iconfield>
+                            <label for="on_label">Confirm password</label>
+                        </p-floatlabel>
+                        <div class="valid-feedback pt-1">
+                            @if(rePassword.touched && rePassword.dirty){
+                                @if(rePassword.getError('required')){ 
+                                    <p-message class="text-center" severity="error" variant="simple" size="small">confirm password is required</p-message>
+                                }
+                                @if(rePassword.getError('passNotMatch')){ 
+                                    <p-message class="text-center text-xs" severity="error" variant="simple" size="small">password dosn't match</p-message>
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="grid">
+                        <div class="col-5">
+                            <div><hr/></div>
+                        </div>
+                        <div class="col">
+                            <div class="text-center text-xs">OR</div>
+                        </div>
+                        <div class="col-5">
+                            <div><hr/></div>
+                        </div>
+                    </div>
+                    <div class="flex justify-content-center w-full px-0 m-0">
+                        <div class="w-full flex-initial flex align-items-center justify-content-center surface-section shadow-1 
+                        text-900 px-3 font-medium hover:text-900 cursor-pointer hover:surface-50 text-base py-2 border-round-xl text-sm">
+                        <img class="mr-1" height="18" src="./assets/logos/google_logo.png"> Log in with Google</div>
+                    </div>
+                                    
+                    <div class="flex w-full my-3">
+                        @if(registrationForm.invalid){
+                            <p-button [disabled]="registrationForm.invalid"  styleClass="w-full border-round-xl" type="submit" class="flex w-full flip animation-duration-5000 animation-iteration-1" label="Submit" severity="contrast" ></p-button>
+                        }
+                        @if(registrationForm.valid){
+                            <p-button [loading]="isSubmitting" label="Success" severity="success"[disabled]="registrationForm.invalid"  styleClass="w-full border-round-xl" type="submit" class="flex w-full flip animation-duration-5000 animation-iteration-1" label="Register" severity="success" ></p-button>
+                        }
+                    </div>
+                </form> 
+                <div class="text-center text-600">
+                    <small >Already have an account? <a class="text-blue-500" routerLink="/login">login</a></small>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+</section>
+

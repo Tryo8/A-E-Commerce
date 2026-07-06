@@ -1,0 +1,26 @@
+<p-menubar [model]="items">
+    <ng-template #start>
+        <svg width="33" height="35" viewBox="0 0 33 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="..." fill="var(--primary-color)" />
+        </svg>
+    </ng-template>
+    <ng-template #item let-item let-root="root">
+        <a pRipple class="flex items-center p-menubar-item-link">
+           
+         
+            <span *ngIf="item.shortcut" class="ml-auto border border-surface rounded bg-emphasis text-muted-color text-xs p-1">{{ item.shortcut }}</span>
+            <i *ngIf="item.items" [ngClass]="['ml-auto pi', root ? 'pi-angle-down' : 'pi-angle-right']"></i>
+        </a>
+    </ng-template>
+    <ng-template #end>
+        <div class="flex items-center gap-2">
+            @for (item of items; track $index) {
+                <div class="p-toolbar-group-start">
+                    <p-button [routerLink]="item.routerLink" text plain severity="secondary" class="mr-2" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{ item.label}} <i [class]="item.icon"></i> </p-button>
+                </div>     
+            }
+          
+        
+        </div>
+    </ng-template>
+</p-menubar>

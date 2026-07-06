@@ -1,0 +1,86 @@
+<section>
+    <div class="container m-3 justify-content-center mx-auto">
+        <div class="grid justify-content-center mt-5" >
+            <div class="col shadow-2 border-round-xl surface-100 px-3" style="max-width: 380px;">
+                <h4 class="text-700 text-start">Login Form</h4>
+                <form [formGroup]="loginForm" (ngSubmit)="onFormSubmit()">
+                    <!-- email -->
+                    <div class="feild mb-3">
+                        <p-floatlabel variant="on">
+                            <p-iconfield>
+                                @if(email.errors  && email.dirty){
+                                    <p-inputicon style="color: #f32a2a" class="pi pi-envelope" />
+                                } @else {
+                                    <p-inputicon class="pi pi-envelope" />
+                                }
+                             
+                                <input  [pAutoFocus]="true" formControlName="email"  class="w-full border-round-xl" pInputText id="on_label" autocomplete="off" required/>
+                            </p-iconfield>
+                            <label for="on_label">Email</label>
+                        </p-floatlabel>
+                        <div class="valid-feedback pt-1">
+                            @if(email.touched && email.dirty){
+                                @if(email.getError('required')){ 
+                                    <p-message class="text-center" severity="error" variant="simple" size="small">email is required</p-message>
+                                }
+                                @if(email.getError('email')){
+                                    <p-message class="text-center" severity="error" variant="simple" size="small">must be a valid email address</p-message> 
+                                }
+                            }
+                        </div>
+                        
+                    </div>
+                    <!-- password -->
+                    <div class="feild mb-3">
+                        <p-floatlabel variant="on">
+                            <p-iconfield [class.show]="showPassword">
+                                @if(password.errors  && password.dirty){
+                                    <p-inputicon style="color: #f32a2a" class="pi pi-lock" />
+                                } @else {
+                                    <p-inputicon class="pi pi-lock" />
+                                }
+                                <input toggleMask="true" [type]="showPassword ? 'text' : 'password'" formControlName="password"  class="w-full border-round-xl" pInputText id="on_label" autocomplete="off" required/>
+                                @if(password.errors  && password.dirty){
+                                    <p-inputicon style="color: #f32a2a" class="cursor-pointer"  [ngClass]="showPassword ? 'pi pi-eye' : 'pi pi-eye-slash'" (click)="togglePassword()"/>
+                                } @else {
+                                    <p-inputicon class="cursor-pointer" [ngClass]="showPassword ? 'pi pi-eye' : 'pi pi-eye-slash'" (click)="togglePassword()"/>
+                                }
+                              
+                            </p-iconfield>
+                            <label for="on_label">Password</label>
+                        </p-floatlabel>
+                        <div class="valid-feedback pt-1">
+                            @if(password.touched && password.dirty){
+                                @if(password.getError('required')){ 
+                                    <p-message class="text-center" severity="error" variant="simple" size="small">password is required</p-message>
+                                }
+                                @if(password.getError('minlength')){ 
+                                    <p-message class="text-center" severity="error" variant="simple" size="small">Must be at least 8 characters</p-message>
+                                }
+                            }
+                        </div>
+                       
+                    </div>
+                    <div  class="flex text-center justify-content-center">
+                        <p-message  class="text-center" severity="error" variant="simple" size="small">{{ failMessage }}</p-message>
+                    </div>
+                 
+                                    
+                    <div class="flex w-full my-3">
+                        @if(loginForm.invalid){
+                            <p-button [disabled]="loginForm.invalid"  styleClass="w-full border-round-xl" type="submit" class="flex w-full flip animation-duration-5000 animation-iteration-1" label="Submit" severity="contrast" ></p-button>
+                        }
+                        @if(loginForm.valid){
+                            <p-button [loading]="isSubmitting" label="Success" severity="success"[disabled]="loginForm.invalid"  styleClass="w-full border-round-xl" type="submit" class="flex w-full flip animation-duration-5000 animation-iteration-1" label="Login" severity="success" ></p-button>
+                        }
+                    </div>
+                </form> 
+                <div class="text-center text-600">
+                    <small >Already have an account? <a class="text-blue-500" routerLink="/register">Register</a></small>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+</section>
+

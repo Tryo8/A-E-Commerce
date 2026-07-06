@@ -1,0 +1,74 @@
+
+<section>
+    <div class="p-2 justify-content-center ">
+        <h5 class="text-500 uppercase">products</h5>
+        <div>
+            <div class="card flex flex-wrap justify-center gap-4 w-full mb-2">
+                <p-iconfield class="w-full">
+                    <p-inputicon styleClass="pi pi-search" />
+                    <input [(ngModel)]="searchKey" class="border-round-xl shadow-1 w-full" type="text" pInputText placeholder="Search" />
+                     <p-inputicon (click)="showDialog()" class="pi pi-filter hover:text-cyan-500 cursor-pointer" />
+                </p-iconfield>
+            </div>
+            @defer (on idle) {
+                <app-card [searchKey]="searchKey"
+                [Products]="allProducts | searchName : searchKey | filter : getCategory"></app-card>
+            }  
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Filter Dialog -->
+<p-dialog 
+  header="Filter Options" 
+  [(visible)]="visible" 
+  [modal]="true" 
+  [style]="{width: '26rem', height: '22rem'}" 
+  [draggable]="true" 
+  [resizable]="false"
+  [dismissableMask]="true">
+
+  <div class="p-fluid">
+    <!-- Category -->
+    <div class="field mb-3 w-full">
+      <label>Category</label>
+      <p-dropdown 
+        class="w-full"
+        [options]="categories" 
+        [(ngModel)]="getCategory"
+        optionLabel="label" 
+        optionValue="value"
+        placeholder="Select category">
+      </p-dropdown>
+    </div>
+
+    <!-- Rate -->
+    <div class="field mb-3 w-full">
+      <label>Rate (min)</label>
+      <p-inputNumber 
+        class="w-full" 
+        [(ngModel)]="rateFilter" 
+        inputId="rate" 
+        mode="decimal"
+        [minFractionDigits]="1">
+      </p-inputNumber>
+    </div>
+
+    <!-- Apply -->
+    <div class="field mb-3 w-full">
+      <button 
+        pButton 
+        severity="info"
+        [rounded]="true"
+        type="button" 
+        label="Apply" 
+        [raised]="true"
+        (click)="applyFilter()">
+      </button>
+    </div>
+  </div>
+</p-dialog>
+
+<!-- Product List -->

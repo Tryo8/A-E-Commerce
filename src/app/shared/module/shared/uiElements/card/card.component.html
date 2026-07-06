@@ -1,0 +1,67 @@
+<div class="grid justify-content-center">
+    @for(product of Products; track $index){
+        @defer(on idle){
+        <div class="cursor-pointer col-12 sm:col-6 md:col-3 lg:col-3">
+            <div class="surface-card border-round-xl shadow-1 pb-2 hover:shadow-2 transition-duration-200">
+            
+                <figure [routerLink]="['/user/details', product.id]"  class="m-0 border-round-lg overflow-hidden aspect-square">
+                    <img 
+                    height="150"
+                    width="100%"
+                    style="object-fit: contain;"
+                    [src]="product.image ? product.image : 'https://cdn.pixabay.com/photo/2016/10/08/18/35/help-1724292_1280.png'" 
+                    [alt]="product.title"
+                    
+                    class="l object-cover transition-transform transition-duration-300 hover:scale-105">
+                </figure>
+
+                <div class="mt-3 px-2">
+                    <span (click)="goToDetails(product.id)">
+                        <h3 class="text-base font-semibold mb-1 line-clamp-2 truncate-1-lines">
+                        {{ product.title }}
+                        </h3>
+                        <p class="text-sm text-color-secondary line-clamp-2 mb-2 truncate-2-lines">
+                        {{ product.description }}
+                        </p>
+
+                        <div class="flex align-items-center gap-2">
+                            <span class="text-color-secondary text-sm">
+                                <small>{{ product.category }}</small>
+                            </span>
+                            <span class="text-green-500 font-bold text-lg">${{ product.price }}</span>
+                        </div>
+                    </span>
+
+                    <div class="mt-2 flex align-items-center gap-1">
+                        @if(product.rating.rate > 4) {
+                            <span class="bg-yellow-400 text-white text-xs font-bold p-1 border-round-xl">{{ product.rating.rate }} <i class="pi pi-star-fill" style="font-size: 0.6rem"></i></span>
+                        } @else {
+                            <span class="text-yellow-400 text-xs font-bold p-1 border-round-xl">{{ product.rating.rate }} <i class="pi pi-star-fill" style="font-size: 0.6rem"></i></span>
+
+                        }
+                        
+                        
+                
+                        @if(!product.isAddedToCart){
+                            <p-button (click)="addToCart(product); product.isAddedToCart= true"class="ml-auto" icon="pi pi-cart-plus" label="Add to Cart" [rounded]="true" severity="info" />
+                        }
+                        @if(product.isAddedToCart){
+                            <p-button [routerLink]="['/user/cart']"  class="ml-auto flipright animation-duration-300 animation-iteration-1" icon="pi pi-cart-arrow-down" label="Go to Cart" [rounded]="true" severity="help" />
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>} @placeholder {
+            <app-card-skeleton></app-card-skeleton>
+        }
+    } 
+    @empty { 
+        <div class="flex-1 text-center justify-content-center">
+            <app-empty></app-empty>
+            <h5 class="text-500">
+                No products were found 
+            </h5>
+            <p-button [routerLink]="'/user/home'" [rounded]="true" severity="danger" label="Back to home" />
+        </div>
+    }
+</div>

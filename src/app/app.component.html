@@ -1,0 +1,13 @@
+
+
+<div class="main-page-container">
+  <main>
+    <div class="main-content">
+      <router-outlet></router-outlet>
+      <p-toast  position="bottom-right" key="br"/>  
+    </div> 
+  </main> 
+</div>
+
+<!-- spinner -->
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "line-spin-fade" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>

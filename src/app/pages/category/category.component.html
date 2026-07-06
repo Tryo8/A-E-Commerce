@@ -1,0 +1,16 @@
+<section>
+    <div class="p-2">
+        <h5 class="text-500">ALL CATEGORIES</h5>
+        <div class="grid gap-2 justify-content-center">
+            @for(category of categories; track $index){
+                <div class="cursor-pointer sm:col-5 md:col-3 lg:col-2 col-12 justify-content-center shadow-1 border-round-xl hover:shadow-3 hover:surface-50">
+                    <figure [routerLink]="['/user/specificCategory', category]" class="justify-content-center text-center">
+                        <img class=" border-round-xl" height="170" width="100%" style="object-fit: cover;" [src]="getImageCategory(category)" [alt]="category">
+                    </figure>
+                    <h4 class="text-500 text-center">{{ category }}</h4>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>

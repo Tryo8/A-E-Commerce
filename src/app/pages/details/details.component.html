@@ -1,0 +1,23 @@
+@if(product){
+<div class="p-4">
+  <div class="flex flex-column md:flex-row gap-4 shadow-3 border-round-2xl p-3">
+    <img [src]="product.image" alt="{{ product.title }}" height="300" style="object-fit: contain;" class="w-18rem" />
+    <div>
+      <h2 class="text-2xl font-bold mb-2">{{ product.title }} <span class="bg-yellow-400 text-white text-xs font-bold p-1 border-round-xl">{{ product.rating.rate }} <i class="pi pi-star-fill" style="font-size: 0.6rem"></i></span></h2>
+      <h5>Description</h5>
+      <p class="mb-3 text-lg text-color-secondary">{{ product.description }}</p>
+      <p class="text-green-600 font-semibold text-2xl">${{ product.price }}</p>
+      
+        @if(!product.isAddedToCart){
+          <p-button (click)="addToCart(product); product.isAddedToCart= true"class="ml-auto" icon="pi pi-cart-plus" label="Add to Cart" [rounded]="true" severity="info" />
+        }
+        @if(product.isAddedToCart){
+          <p-button [routerLink]="['/user/cart']"  class="ml-auto flipright animation-duration-300 animation-iteration-1" icon="pi pi-cart-arrow-down" label="Go to Cart" [rounded]="true" severity="help" />
+        }
+      <div class="mt-2">
+        <small>there's <b class="text-color">{{product.rating.count}}</b> in stock</small>
+      </div>
+      
+    </div>
+  </div>
+</div>}

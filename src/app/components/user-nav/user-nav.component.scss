@@ -1,0 +1,16 @@
+.active {
+  color: #181717;
+}
+
+.text-red-500{
+  color: red;
+}
+
+.truncate-name {
+   display: inline-block;
+  max-width: 60px; /* roughly 10 characters wide */
+  white-space: nowrap; /* keep text in one line */
+  overflow: hidden; /* hide overflow */
+  text-overflow: ellipsis; /* add "..." at the end */
+  vertical-align: middle;
+}

@@ -1,0 +1,39 @@
+<p-menubar styleClass="surface-50 shadow-1 order-0" [model]="items">
+    <ng-template #start>
+        <figure class="m-0"> 
+            <img class="" src="https://cdn-icons-png.flaticon.com/128/1040/1040254.png" height="26" width="26" style="object-fit: cover;" alt="shopping-logo">
+       </figure>
+    </ng-template>
+    <ng-template #item let-item let-root="root">
+        <a pRipple  [class]="item.styleClass" class="flex items-center p-menubar-item-link">
+            <span [routerLink]="item.path" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active"><i [class]="item.icon"></i> {{ item.label }}</span>
+            <p-badge *ngIf="item.badge" [ngClass]="{ 'ml-auto': !root, 'ml-2': root }" [value]="item.badge" />
+            <span *ngIf="item.shortcut" class="ml-auto border border-surface rounded bg-emphasis text-muted-color text-xs p-1">{{ item.shortcut }}</span>
+            <i *ngIf="item.items" [ngClass]="['ml-auto pi', root ? 'pi-angle-down' : 'pi-angle-right']"></i>
+        </a>
+    </ng-template>
+    <ng-template #end>
+        <div class="flex items-center gap-2">
+            <!-- <p-avatar class="cursor-pointer shadow-2 hover:surface-300" routerLink="profile" [image]="user.image ? user.image : 'https://cdn-icons-png.flaticon.com/128/3177/3177440.png'" shape="circle" /> -->
+            <div routerLink="cart" class="cursor-pointer card pt-2 mr-3 flex justify-center">
+                @if(cartCount){
+                <i class="pi pi-shopping-cart hover:text-green-700 text-2xl flipup animation-duration-1000 animation-iteration-1 " pBadge severity="info"  badgeSize="small" [value]="cartCount"></i>}
+                @else {
+                    <i pBadge [value]="0" class="pi pi-shopping-cart hover:text-green-700 text-2xl" severity="info"></i>
+
+                }
+            </div>
+              
+            <p-splitbutton label="User name" [model]="userItems" rounded severity="info">
+                <ng-template #content>
+                    <span class="flex items-center">
+                        <img alt="logo" class="mr-1" height="20" width="20" [src]="user?.image ? user?.image : 'https://cdn-icons-png.flaticon.com/128/3177/3177440.png'" style="object-fit: cover; border-radius: 50%;" />
+                        <span class="truncate-name">{{ user?.name || 'Guest' }}</span>
+                    </span>
+                </ng-template>
+            </p-splitbutton>
+            
+        </div>
+    </ng-template>
+</p-menubar>
+

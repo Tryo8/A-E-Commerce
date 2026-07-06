@@ -1,0 +1,22 @@
+
+
+<section>
+    <div class="p-2 justify-content-center ">
+        <h5 class="text-500 uppercase">category for <b class="text-blue-500 font-semibold">{{ categoryType }}</b></h5>
+
+        <div>
+            <div class="card flex flex-wrap justify-center gap-4 w-full mb-2">
+                <p-iconfield class="w-full">
+                    
+                    <p-inputicon styleClass="pi pi-search" />
+                    <input [(ngModel)]="searchKey" class="border-round-xl shadow-1 w-full" type="text" pInputText placeholder="Search" />
+                </p-iconfield>
+            </div>
+            @defer (on idle) {
+                <app-card [searchKey]="searchKey" [Products]="products | searchName : searchKey"></app-card>
+            }
+            
+
+        </div>
+    </div>
+</section>
