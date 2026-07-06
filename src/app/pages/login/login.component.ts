@@ -73,8 +73,8 @@ export class LoginComponent {
       console.log('Form submitted!');
       this.isSubmitting = false;
       if(this.loginForm.valid){
-      console.log(this.loginForm);
-      this.signIn(this.loginForm.value);
+        console.log(this.loginForm);
+        this.signIn(this.loginForm.value);
    
       } else {
       this.loginForm.markAllAsTouched();
@@ -84,29 +84,35 @@ export class LoginComponent {
 
     this.loginForm.markAllAsTouched();
   }
-  failMessage:any;
-  signIn(data:ILogin): void {
-    this.authService.login(data).subscribe({
-    next:(res) => {
-      this._userData.userName.next(res.name)
-      localStorage.setItem('token', JSON.stringify(res.token));
-      localStorage.setItem('id', JSON.stringify(res.id));
-      console.log(res);
-      this.showSuccessRegisterMessage();
-  
-      setTimeout(() => {
-        this._routes.navigate(['user']);
+    failMessage:any;
+    signIn(data:ILogin): void {
+      this.authService.login(data).subscribe({
+      next:(res) => {
+        this._userData.userName.next(res.name)
+        localStorage.setItem('token', JSON.stringify(res.token));
+        localStorage.setItem('id', JSON.stringify(res.id));
+        console.log(res);
+        this.showSuccessRegisterMessage();
+    
+        setTimeout(() => {
+          this._routes.navigate(['user']);
 
-      }, 1000)
-    },
-    error:(err) => {
-      console.log(err);
-      this.showFailRegisterMessage();
- 
-      // ✅ show backend success message
-      this.failMessage = 'Invalid email or password, try again';
-    }
-  })
+        }, 1000)
+      },
+      error:(err) => {
+        console.log(err);
+        this.showFailRegisterMessage();
+  
+        // ✅ show backend success message
+        this.failMessage = 'Invalid email or password, try again';
+      }
+    })
+  }
+
+  skipForNow(){
+    localStorage.setItem("token", "SkipLogin");
+    this._routes.navigate(["/user/home"])
+  
   }
 
  
